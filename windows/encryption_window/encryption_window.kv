@@ -3,23 +3,35 @@
     orientation: 'vertical'
     rows: 3
     size_hint: None, None
-    size: 420, 210
+    size: 300, 150
     pos_hint: {'center_x': 0.5, 'center_y': 0.5}
     padding: [10,10,10,10]
 
     TextInput:
+        id: text_to_encrypt_input
         hint_text: 'Something to encrypt...'
         padding: [10, (self.height - self.line_height) / 2]
         size_hint_y: None
         height: 50
+        password: True
+
+    TextInput:
+        id: encryption_key_input
+        hint_text: 'Encryption key'
+        padding: [10, (self.height - self.line_height) / 2]
+        size_hint_y: None
+        height: 50
+        password: True
 
     Button:
+        id: encrypt_button
         text: 'Encrypt'
         size_hint_y: None
         height: 50
 
     TextInput:
-        padding: [10, (self.height - self.line_height) / 2]
+        id: encrypted_result
         size_hint_y: None
-        height: 200
+        height: 100
         readonly: True
+        multiline: True
