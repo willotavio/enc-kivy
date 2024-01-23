@@ -1,0 +1,25 @@
+<EncryptionWindow>:
+
+    orientation: 'vertical'
+    rows: 3
+    size_hint: None, None
+    size: 420, 210
+    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+    padding: [10,10,10,10]
+
+    TextInput:
+        hint_text: 'Something to encrypt...'
+        padding: [10, (self.height - self.line_height) / 2]
+        size_hint_y: None
+        height: 50
+
+    Button:
+        text: 'Encrypt'
+        size_hint_y: None
+        height: 50
+
+    TextInput:
+        padding: [10, (self.height - self.line_height) / 2]
+        size_hint_y: None
+        height: 200
+        readonly: True
