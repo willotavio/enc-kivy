@@ -2,10 +2,8 @@
 
     orientation: 'vertical'
     rows: 3
-    size_hint: None, None
-    size: 300, 150
     pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-    padding: [10,10,10,10]
+    padding: [100,100,100,100]
 
     TextInput:
         id: text_to_encrypt_input
@@ -36,8 +34,22 @@
         readonly: True
         multiline: True
 
-    Button:
-        text: 'Clear'
+    Label:
+        id: copy_confirmation
         size_hint_y: None
         height: 50
-        on_press: encrypted_result.text = ""
+
+    BoxLayout:
+        size_hint_y: None
+        orientation: 'horizontal'
+        Button:
+            text: 'Copy'
+            size_hint_y: None
+            height: 50
+            on_press: root.on_copy_button_press()
+
+        Button:
+            text: 'Clear'
+            size_hint_y: None
+            height: 50
+            on_press: encrypted_result.text = ""
