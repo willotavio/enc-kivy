@@ -1,0 +1,53 @@
+<DecryptionWindow>:
+
+    orientation: 'vertical'
+    rows: 3
+    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+    padding: [100,100,100,100]
+
+    TextInput:
+        id: text_to_decrypt_input
+        hint_text: 'Something to decrypt...'
+        padding: [10, (self.height - self.line_height) / 2]
+        size_hint_y: None
+        height: 50
+        password: True
+
+    TextInput:
+        id: decryption_key_input
+        hint_text: 'Decryption key'
+        padding: [10, (self.height - self.line_height) / 2]
+        size_hint_y: None
+        height: 50
+        password: True
+
+    Button:
+        id: decrypt_button
+        text: 'Decrypt'
+        size_hint_y: None
+        height: 50
+
+    TextInput:
+        id: decrypted_result
+        size_hint_y: None
+        height: 100
+        readonly: True
+        multiline: True
+
+    Label:
+        id: copy_confirmation
+        size_hint_y: None
+        height: 50
+
+    BoxLayout:
+        size_hint_y: None
+        orientation: 'horizontal'
+        Button:
+            text: 'Copy'
+            size_hint_y: None
+            height: 50
+
+        Button:
+            text: 'Clear'
+            size_hint_y: None
+            height: 50

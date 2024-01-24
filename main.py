@@ -1,6 +1,7 @@
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
 from windows.encryption_window.encryption_window import EncryptionWindow
+from windows.decryption_window.decryption_window import DecryptionWindow
 import os
 
 from kivy.lang.builder import Builder
@@ -12,6 +13,7 @@ class HomeTabs(TabbedPanel):
     def __init__(self, **kwargs):
         super(HomeTabs, self).__init__(**kwargs)
         self.ids.tab_1.add_widget(EncryptionWindow())
+        self.ids.tab_2.add_widget(DecryptionWindow())
 
 
 class AppMain(App):
