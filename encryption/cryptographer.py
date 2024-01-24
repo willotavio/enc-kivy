@@ -7,7 +7,7 @@ class Cryptographer:
     @staticmethod
     def encrypt(self, encryption_key, texts_to_encrypt):
         try:
-            if encryption_key and len(encryption_key) == 16 and texts_to_encrypt:
+            if encryption_key and len(encryption_key) == 16 and len(texts_to_encrypt) > 0:
                 encrypted_texts = []
                 encryption_key = encryption_key.encode('utf-8')
                 for text_to_encrypt in texts_to_encrypt.split(' | '):
@@ -28,3 +28,27 @@ class Cryptographer:
                 return False, "Password must have 16 characters (*•~•)л"
         except ValueError as e:
             return False, f"Encryption failed: {str(e)}"
+
+    @staticmethod
+    def decrypt(self, decryption_key, texts_to_decrypt):
+        try:
+            if decryption_key and len(decryption_key) == 16 and len(texts_to_decrypt) > 0:
+                decrypted_texts = []
+                decryption_key = decryption_key.encode('utf-8')
+                for text_to_decrypt in texts_to_decrypt.split(' | '):
+                    nonce, encrypted_text, tag = text_to_decrypt.split('/')
+                    nonce = bytes.fromhex(nonce)
+                    encrypted_text = bytes.fromhex(encrypted_text)
+                    tag = bytes.fromhex(tag)
+
+                    cipher = AES.new(decryption_key, AES.MODE_EAX, nonce)
+
+                    decrypted_info = cipher.decrypt_and_verify(encrypted_text, tag)
+                    decrypted_info = decrypted_info.decode('utf-8')
+                    decrypted_texts.append(decrypted_info)
+                return True, decrypted_texts
+            else:
+                return False, "Provide the correct information (л*-д-)л"
+        except ValueError as e:
+            print(e)
+            return False, f"Decryption failed: {str(e)}"

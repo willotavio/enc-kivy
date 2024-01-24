@@ -23,11 +23,9 @@ class EncryptionWindow(BoxLayout):
         status, result = Cryptographer.encrypt(self, self.ids.encryption_key_input.text, self.ids.text_to_encrypt_input.text)
         encrypted_texts = ""
         if status:
-            n = 1
             for item in result:
                 encrypted_texts += f"{item}\n\n"
-                n += 1
-            encrypted_texts = encrypted_texts[:-1]
+            encrypted_texts = encrypted_texts[:-2]
             self.ids.encryption_key_input.text = ""
             self.ids.text_to_encrypt_input.text = ""
         else:
