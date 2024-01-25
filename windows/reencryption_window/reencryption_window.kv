@@ -14,8 +14,16 @@
         password: True
 
     TextInput:
-        id: reencryption_key_input
-        hint_text: 'Reencryption key'
+        id: old_reencryption_key_input
+        hint_text: 'Old reencryption key'
+        padding: [10, (self.height - self.line_height) / 2]
+        size_hint_y: None
+        height: 50
+        password: True
+
+    TextInput:
+        id: new_reencryption_key_input
+        hint_text: 'New reencryption key'
         padding: [10, (self.height - self.line_height) / 2]
         size_hint_y: None
         height: 50
@@ -23,7 +31,7 @@
 
     Button:
         id: reencrypt_button
-        text: 'Decrypt'
+        text: 'Reencrypt'
         size_hint_y: None
         height: 50
 
@@ -47,6 +55,8 @@
             text: 'Copy'
             size_hint_y: None
             height: 50
+            on_press: root.on_copy_button_press()
+
 
         Button:
             text: 'Clear'
