@@ -21,11 +21,16 @@ class Cryptographer:
 
                     encrypted_info = f"{nonce}/{encrypted_text}/{tag}"
                     encrypted_texts.append(encrypted_info)
-
                 return True, encrypted_texts
-
             else:
-                return False, "Password must have 16 characters (*•~•)л"
+                message = ""
+                if not texts_to_encrypt:
+                    message = "Provide something to be encrypted \\(-п-,\\)"
+                elif not encryption_key:
+                    message = "Provide a key <(•-•<)"
+                elif len(encryption_key) != 16:
+                    message = "Key must have 16 characters (*•~•)л"
+                return False, message
         except ValueError as e:
             return False, f"Encryption failed: {str(e)}"
 
@@ -40,15 +45,20 @@ class Cryptographer:
                     nonce = bytes.fromhex(nonce)
                     encrypted_text = bytes.fromhex(encrypted_text)
                     tag = bytes.fromhex(tag)
-
                     cipher = AES.new(decryption_key, AES.MODE_EAX, nonce)
-
                     decrypted_info = cipher.decrypt_and_verify(encrypted_text, tag)
                     decrypted_info = decrypted_info.decode('utf-8')
                     decrypted_texts.append(decrypted_info)
                 return True, decrypted_texts
             else:
-                return False, "Provide the correct information (л*-д-)л"
+                message = ""
+                if not texts_to_decrypt:
+                    message = "Provide something to be encrypted \\(-п-,\\)"
+                elif not decryption_key:
+                    message = "Provide a key <(•-•<)"
+                elif len(decryption_key) != 16:
+                    message = "Key must have 16 characters (*•~•)л"
+                return False, message
         except ValueError as e:
             return False, f"Decryption failed: {str(e)}"
 
@@ -65,4 +75,15 @@ class Cryptographer:
             status, result = Cryptographer.encrypt(self, new_encryption_key, texts_to_encrypt)
             return True, result
         else:
-            return False, "Provide the correct information (_/*-п-)_/"
+            message = ""
+            if not texts_to_reencrypt:
+                message = "Provide something to be encrypted (_/*•л•)_/"
+            elif not old_encryption_key:
+                message = "Provide the old key <(•-•<)"
+            elif not new_encryption_key:
+                message = "Provide the new key \\(~.~*\\)"
+            elif len(old_encryption_key) != 16:
+                message = "Old key must have 16 characters (/*-д-)>"
+            elif len(new_encryption_key) != 16:
+                message = "New key must have 16 characters (*-ш-)л"
+            return False, message
