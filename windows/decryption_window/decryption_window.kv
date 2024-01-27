@@ -24,11 +24,10 @@
 
     TextInput:
         id: delimiter_input
-        hint_text: 'Delimiter (if using, do not use "/")'
+        hint_text: 'Delimiter (if using, do not use "/" or any existing sequence in the text to be decrypted)'
         padding: [10, (self.height - self.line_height) / 2]
         size_hint_y: None
         height: 50
-        password: True
 
     Button:
         id: decrypt_button

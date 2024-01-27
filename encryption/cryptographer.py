@@ -67,16 +67,16 @@ class Cryptographer:
             return False, f"Decryption failed: {str(e)}"
 
     @staticmethod
-    def reencrypt(self, old_encryption_key, new_encryption_key, texts_to_reencrypt):
+    def reencrypt(self, old_encryption_key, new_encryption_key, texts_to_reencrypt, delimiter):
         if old_encryption_key and len(old_encryption_key) == 16 and new_encryption_key and len(new_encryption_key) == 16 and len(texts_to_reencrypt) > 0:
-            status, result = Cryptographer.decrypt(self, old_encryption_key, texts_to_reencrypt)
+            status, result = Cryptographer.decrypt(self, old_encryption_key, texts_to_reencrypt, delimiter)
             if not status:
                 return False, result
             texts_to_encrypt = ""
             for item in result:
-                texts_to_encrypt += f"{item} | "
-            texts_to_encrypt = texts_to_encrypt[:-3]
-            status, result = Cryptographer.encrypt(self, new_encryption_key, texts_to_encrypt)
+                texts_to_encrypt += f"{item}{delimiter}"
+            texts_to_encrypt = texts_to_encrypt[:-len(delimiter)]
+            status, result = Cryptographer.encrypt(self, new_encryption_key, texts_to_encrypt, delimiter)
             return True, result
         else:
             message = ""

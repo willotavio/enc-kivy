@@ -24,7 +24,8 @@ class ReencryptionWindow(BoxLayout):
             self,
             self.ids.old_reencryption_key_input.text,
             self.ids.new_reencryption_key_input.text,
-            self.ids.text_to_reencrypt_input.text
+            self.ids.text_to_reencrypt_input.text,
+            self.ids.delimiter_input.text
         )
         reencrypted_result = ""
         if status:
@@ -32,9 +33,10 @@ class ReencryptionWindow(BoxLayout):
                 reencrypted_result += f"{item}\n\n"
             reencrypted_result = reencrypted_result[:-2]
             self.ids.reencrypted_result.text = reencrypted_result
+            self.ids.text_to_reencrypt_input.text = ""
             self.ids.old_reencryption_key_input.text = ""
             self.ids.new_reencryption_key_input.text = ""
-            self.ids.text_to_reencrypt_input.text = ""
+            self.ids.delimiter_input.text = ""
         else:
             self.ids.reencrypted_result.text = result
 
