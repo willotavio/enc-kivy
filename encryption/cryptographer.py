@@ -5,12 +5,14 @@ import binascii
 class Cryptographer:
 
     @staticmethod
-    def encrypt(self, encryption_key, texts_to_encrypt):
+    def encrypt(self, encryption_key, texts_to_encrypt, delimiter):
         try:
+            if not delimiter:
+                delimiter = "_/*;@.@;*/_"
             if encryption_key and len(encryption_key) == 16 and len(texts_to_encrypt) > 0:
                 encrypted_texts = []
                 encryption_key = encryption_key.encode('utf-8')
-                for text_to_encrypt in texts_to_encrypt.split(' | '):
+                for text_to_encrypt in texts_to_encrypt.split(delimiter):
                     text_to_encrypt = text_to_encrypt.encode('utf-8')
                     cipher = AES.new(encryption_key, AES.MODE_EAX)
                     encrypted_text, tag = cipher.encrypt_and_digest(text_to_encrypt)

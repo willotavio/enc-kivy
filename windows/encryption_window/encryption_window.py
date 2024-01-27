@@ -20,7 +20,7 @@ class EncryptionWindow(BoxLayout):
             self.ids.copy_confirmation.text = "Copied to clipboard \\(>-<*)|"
 
     def encrypt(self, button_instance):
-        status, result = Cryptographer.encrypt(self, self.ids.encryption_key_input.text, self.ids.text_to_encrypt_input.text)
+        status, result = Cryptographer.encrypt(self, self.ids.encryption_key_input.text, self.ids.text_to_encrypt_input.text, self.ids.delimiter_input.text)
         encrypted_texts = ""
         if status:
             for item in result:
@@ -28,6 +28,7 @@ class EncryptionWindow(BoxLayout):
             encrypted_texts = encrypted_texts[:-2]
             self.ids.encryption_key_input.text = ""
             self.ids.text_to_encrypt_input.text = ""
+            self.ids.delimiter_input.text = ""
         else:
             encrypted_texts = result
         self.ids.encrypted_result.text = encrypted_texts
