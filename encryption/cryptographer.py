@@ -53,7 +53,7 @@ class Cryptographer:
             else:
                 message = ""
                 if not texts_to_decrypt:
-                    message = "Provide something to be encrypted \\(-п-,\\)"
+                    message = "Provide something to be decrypted \\(-п-,\\)"
                 elif not decryption_key:
                     message = "Provide a key <(•-•<)"
                 elif len(decryption_key) != 16:
@@ -77,7 +77,7 @@ class Cryptographer:
         else:
             message = ""
             if not texts_to_reencrypt:
-                message = "Provide something to be encrypted (_/*•л•)_/"
+                message = "Provide something to be reencrypted (_/*•л•)_/"
             elif not old_encryption_key:
                 message = "Provide the old key <(•-•<)"
             elif not new_encryption_key:
