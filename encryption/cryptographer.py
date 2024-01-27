@@ -37,12 +37,14 @@ class Cryptographer:
             return False, f"Encryption failed: {str(e)}"
 
     @staticmethod
-    def decrypt(self, decryption_key, texts_to_decrypt):
+    def decrypt(self, decryption_key, texts_to_decrypt, delimiter):
         try:
+            if not delimiter:
+                delimiter = "_/*;@.@;*/_"
             if decryption_key and len(decryption_key) == 16 and len(texts_to_decrypt) > 0:
                 decrypted_texts = []
                 decryption_key = decryption_key.encode('utf-8')
-                for text_to_decrypt in texts_to_decrypt.split(' | '):
+                for text_to_decrypt in texts_to_decrypt.split(delimiter):
                     nonce, encrypted_text, tag = text_to_decrypt.split('/')
                     nonce = bytes.fromhex(nonce)
                     encrypted_text = bytes.fromhex(encrypted_text)

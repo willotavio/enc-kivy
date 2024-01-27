@@ -21,7 +21,7 @@ class DecryptionWindow(BoxLayout):
             self.ids.copy_confirmation.text = "Copied to clipboard \\(>-<*)|"
 
     def decrypt(self, button_instance):
-        status, result = Cryptographer.decrypt(self, self.ids.decryption_key_input.text, self.ids.text_to_decrypt_input.text)
+        status, result = Cryptographer.decrypt(self, self.ids.decryption_key_input.text, self.ids.text_to_decrypt_input.text, self.ids.delimiter_input.text)
         decrypted_result = ""
         if status:
             for item in result:
@@ -31,6 +31,7 @@ class DecryptionWindow(BoxLayout):
             self.ids.decrypted_result.text = decrypted_result
             self.ids.decryption_key_input.text = ""
             self.ids.text_to_decrypt_input.text = ""
+            self.ids.delimiter_input.text = ""
         else:
             self.ids.decrypted_result.text = result
 
