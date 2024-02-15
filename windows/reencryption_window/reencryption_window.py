@@ -21,17 +21,12 @@ class ReencryptionWindow(BoxLayout):
 
     def reencrypt(self, instance):
         status, result = Cryptographer.reencrypt(
-            self,
-            self.ids.old_reencryption_key_input.text,
-            self.ids.new_reencryption_key_input.text,
             self.ids.text_to_reencrypt_input.text,
-            self.ids.delimiter_input.text
+            self.ids.old_reencryption_key_input.text,
+            self.ids.new_reencryption_key_input.text
         )
-        reencrypted_result = ""
+        reencrypted_result = result
         if status:
-            for item in result:
-                reencrypted_result += f"{item}\n\n"
-            reencrypted_result = reencrypted_result[:-2]
             self.ids.reencrypted_result.text = reencrypted_result
             self.ids.text_to_reencrypt_input.text = ""
             self.ids.old_reencryption_key_input.text = ""
