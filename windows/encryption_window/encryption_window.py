@@ -25,7 +25,6 @@ class EncryptionWindow(BoxLayout):
         if status:
             self.ids.encryption_key_input.text = ""
             self.ids.text_to_encrypt_input.text = ""
-            self.ids.delimiter_input.text = ""
         else:
             encrypted_texts = result
         self.ids.encrypted_result.text = encrypted_texts

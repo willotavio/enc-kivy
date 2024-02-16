@@ -31,7 +31,6 @@ class ReencryptionWindow(BoxLayout):
             self.ids.text_to_reencrypt_input.text = ""
             self.ids.old_reencryption_key_input.text = ""
             self.ids.new_reencryption_key_input.text = ""
-            self.ids.delimiter_input.text = ""
         else:
             self.ids.reencrypted_result.text = result
 

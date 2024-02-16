@@ -27,7 +27,6 @@ class DecryptionWindow(BoxLayout):
             self.ids.decrypted_result.text = decrypted_result
             self.ids.decryption_key_input.text = ""
             self.ids.text_to_decrypt_input.text = ""
-            self.ids.delimiter_input.text = ""
         else:
             self.ids.decrypted_result.text = result
 
