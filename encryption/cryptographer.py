@@ -19,7 +19,7 @@ class Cryptographer:
     
 
     @staticmethod
-    def derive_key_and_salt(password, salt):
+    def derive_key_and_iv(password, salt):
         try:
             saltBytes = bytes(salt)
             iterations = 10000
@@ -51,7 +51,7 @@ class Cryptographer:
         try:
             if len(text_to_encrypt) > 0 and len(password) >= 12:
                 salt = Cryptographer.generate_salt()
-                key_and_iv = Cryptographer.derive_key_and_salt(password, salt)
+                key_and_iv = Cryptographer.derive_key_and_iv(password, salt)
                 key_bytes = key_and_iv["key"]
                 iv_bytes = key_and_iv["iv"]
 
@@ -94,7 +94,7 @@ class Cryptographer:
 
                 salt = base64.b64decode(base64_salt)
 
-                key_and_iv = Cryptographer.derive_key_and_salt(password, salt);
+                key_and_iv = Cryptographer.derive_key_and_iv(password, salt);
                 key_bytes = key_and_iv["key"];
                 iv_bytes = key_and_iv["iv"];
 
