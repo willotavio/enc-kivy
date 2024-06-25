@@ -119,7 +119,7 @@ class Cryptographer:
                     message = "Password must have at least 12 characters (*•~•)л"
 
                 return False, message
-        except (ValueError, AttributeError, TypeError) as e:
+        except (ValueError, AttributeError, TypeError, IndexError) as e:
             return False, f"An error occurred: {e}"
     
     @staticmethod
